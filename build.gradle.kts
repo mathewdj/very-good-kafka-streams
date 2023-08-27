@@ -13,8 +13,20 @@ repositories {
 
 dependencies {
     implementation("org.apache.kafka:kafka-streams:3.5.1")
-    implementation("org.apache.kafka:kafka-client:3.5.1")
+    implementation("org.apache.kafka:kafka-clients:3.5.1")
+    testImplementation("org.apache.kafka:kafka-streams-test-utils:3.5.1")
     testImplementation(kotlin("test"))
+
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.15.2")
+
+    implementation(platform("org.testcontainers:testcontainers-bom:1.17.3"))
+    testImplementation("org.testcontainers:testcontainers:1.17.3")
+    testImplementation("org.testcontainers:junit-jupiter:1.17.3")
+    testImplementation("org.testcontainers:kafka:1.17.3")
+
+    testImplementation("org.assertj:assertj-core:3.23.1")
+    testImplementation("io.mockk:mockk:1.13.7")
+
 }
 
 tasks.test {
@@ -22,5 +34,5 @@ tasks.test {
 }
 
 tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "1.8"
+    kotlinOptions.jvmTarget = "17"
 }
