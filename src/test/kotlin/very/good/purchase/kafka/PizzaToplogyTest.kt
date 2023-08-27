@@ -30,16 +30,16 @@ class PizzaToplogyTest {
 
         val config = Properties()
         config[DEFAULT_KEY_SERDE_CLASS_CONFIG] = Serdes.String()::class.java.name
-        config[DEFAULT_VALUE_SERDE_CLASS_CONFIG] = PizzaSerdes::class.java.name
+        config[DEFAULT_VALUE_SERDE_CLASS_CONFIG] = Serdes.String()::class.java.name
 
         val topologyTestDriver = TopologyTestDriver(topology, config)
         val inputTopic = topologyTestDriver.createInputTopic(
             INBOUND_PIZZA_ORDER_TOPIC,
             StringSerializer(),
-            PizzaSerdes.serdes().serializer()
+            Serdes.String().serializer()
         )
 
-        inputTopic.pipeInput("key", givenPizza())
+        inputTopic.pipeInput("key", PizzaType.Hawaiian.name)
 
         val store = topologyTestDriver.getKeyValueStore<String, Long>(PizzaToplogy.PIZZA_COUNT_TABLE)
         assertThat(store[PizzaType.Hawaiian.name]).isEqualTo(1L)

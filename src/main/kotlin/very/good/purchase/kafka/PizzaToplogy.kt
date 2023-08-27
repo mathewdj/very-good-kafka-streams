@@ -12,8 +12,8 @@ class PizzaToplogy(
 ) {
 
     fun buildPipeline(builder: StreamsBuilder) {
-        builder.stream<String, Pizza>(inboundPizzaOrderTopic)
-            .groupBy { _, value -> value.type.name }
+        builder.stream<String, String>(inboundPizzaOrderTopic)
+            .groupBy { _, value -> value }
             .aggregate(
                 { 0L },
                 {_, _, count: Long -> count + 1},
