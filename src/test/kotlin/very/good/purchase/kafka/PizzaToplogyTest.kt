@@ -40,9 +40,12 @@ class PizzaToplogyTest {
         )
 
         inputTopic.pipeInput("key", PizzaType.Hawaiian.name)
+        inputTopic.pipeInput("key", PizzaType.Hawaiian.name)
+        inputTopic.pipeInput("key", PizzaType.Capricciosa.name)
 
         val store = topologyTestDriver.getKeyValueStore<String, Long>(PizzaToplogy.PIZZA_COUNT_TABLE)
-        assertThat(store[PizzaType.Hawaiian.name]).isEqualTo(1L)
+        assertThat(store[PizzaType.Hawaiian.name]).isEqualTo(2L)
+        assertThat(store[PizzaType.Capricciosa.name]).isEqualTo(1L)
     }
 
     companion object {
