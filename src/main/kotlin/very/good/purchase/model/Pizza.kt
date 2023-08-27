@@ -3,8 +3,8 @@ package very.good.purchase.model
 import java.math.BigDecimal
 
 data class Pizza(
-    val amount: BigDecimal,
-    val type:  PizzaType,
+    var amount: BigDecimal = BigDecimal.ZERO,
+    var type:  PizzaType = PizzaType.Plain,
 )
 
 enum class PizzaType {
@@ -13,4 +13,5 @@ enum class PizzaType {
     Hawaiian,
     Supreme,
     MeatLovers,
+    Plain,
 }
