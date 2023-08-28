@@ -18,6 +18,7 @@ dependencies {
     testImplementation(kotlin("test"))
 
     implementation("com.fasterxml.jackson.core:jackson-databind:2.15.2")
+    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.14.2")
 
     implementation(platform("org.testcontainers:testcontainers-bom:1.17.3"))
     testImplementation("org.testcontainers:testcontainers:1.17.3")
