@@ -12,11 +12,11 @@ class PizzaToplogy(
 ) {
 
     fun buildPipeline(builder: StreamsBuilder) {
-        builder.stream<String, String>(inboundPizzaOrderTopic)
-            .groupBy { _, value -> value }
+        builder.stream<String, Pizza>(inboundPizzaOrderTopic)
+            .groupBy { _, value -> value.type.name }
             .aggregate(
                 { 0L },
-                {_, _, count: Long -> count + 1},
+                {_, _: Pizza, count: Long -> count + 1},
                 Materialized.`as`<String, Long, KeyValueStore<Bytes, ByteArray>?>(PIZZA_COUNT_TABLE)
                     .withKeySerde(Serdes.String())
                     .withValueSerde(Serdes.Long())
