@@ -26,7 +26,7 @@ class PizzaToplogyTest {
     fun setup() {
         pizzaToplogy = PizzaToplogy(INBOUND_PIZZA_ORDER_TOPIC)
 
-        pizzaToplogy.buildPipeline(streamsBuilder)
+        pizzaToplogy.countPizzaPipeline(streamsBuilder)
         val topology = streamsBuilder.build()
 
         val config = Properties()

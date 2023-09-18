@@ -11,7 +11,7 @@ class PizzaToplogy(
     private val inboundPizzaOrderTopic: String = "inbound-pizza-orders"
 ) {
 
-    fun buildPipeline(builder: StreamsBuilder) {
+    fun countPizzaPipeline(builder: StreamsBuilder) {
         builder.stream<String, Pizza>(inboundPizzaOrderTopic)
             .groupBy { _, value -> value.type.name }
             .aggregate(

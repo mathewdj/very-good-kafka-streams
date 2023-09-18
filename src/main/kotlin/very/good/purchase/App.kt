@@ -19,5 +19,5 @@ fun main() {
         Serdes.String()::class.java.name
 
     val builder = StreamsBuilder()
-    PizzaToplogy().buildPipeline(builder)
+    PizzaToplogy().countPizzaPipeline(builder)
 }
